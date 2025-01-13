@@ -18,7 +18,7 @@ const getAllPokemon = async (req, res) => {
     }
 };
 
-// pokemon/pokemons/:name
+// pokemon/pokemon/:name
 const getPokemonByname = async (req, res) => {
     try {
         const name = req.params.name;
@@ -27,17 +27,31 @@ const getPokemonByname = async (req, res) => {
             return res.status(404).json({ message: "Pokemon not found" })
         }
         const total = await Pokemon.find().countDocuments();
-        res.status(200).json({ pokemon , total });
+        res.status(200).json({ pokemon, total });
+    }
+    catch (error) {
+        res.status(404).json({ message: "Error fetching Pokemon", err: error.message });
+    }
+};
+// pokemon/pokemons/:type
+const getPokemonByType = async (req, res) => {
+    try {
+        const type = req.params.type;
+        const pokemons = await Pokemon.find({ type }, {_id:0,id:1,'name.english':1, type : 1});
+        if (pokemons.length === 0) {
+            return res.status(404).json({ message: "Pokemon not found" })
+        }
+        const total = await Pokemon.find().countDocuments();
+        res.status(200).json({ pokemons, total , length : pokemons.length});
     }
     catch (error) {
         res.status(404).json({ message: "Error fetching Pokemon", err: error.message });
     }
 };
 
-
-
 module.exports = {
     test,
     getAllPokemon,
-    getPokemonByname
+    getPokemonByname,
+    getPokemonByType
 };

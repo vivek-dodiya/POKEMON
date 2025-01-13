@@ -4,7 +4,8 @@ const dotenv = require('dotenv').config();
 
 PORT = process.env.PORT || 4000;
 const DbConnect = require('./DB/db');
-const pokemonRoutes = require('./routes/pokemonRoutes')
+const pokemonRoutes = require('./routes/pokemonRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 
 try {
@@ -15,6 +16,7 @@ catch (error) {
 }
 
 app.use(express.json());
+app.use('/user', userRoutes);
 app.use('/pokemon', pokemonRoutes);
 app.get('/', (req, res) => {
     res.send('Hello World!')

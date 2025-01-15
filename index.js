@@ -13,13 +13,13 @@ try {
 }
 catch (error) {
     console.log(error);
-}
+};
 
 app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/pokemon', pokemonRoutes);
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.status(200).json({message :'Hello World!'})
 })
 
 app.listen(PORT, () => {

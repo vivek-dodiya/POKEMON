@@ -8,13 +8,13 @@ POKEMON/
 │   └── userRoutes.js               
 ├── DB/                                 # Database handlers
 │   └── db.js
-├── middleware/
+├── middleware/                         # for Middleware
 │   └── auth.js            
 ├── models/                             # Mongoose schema
 │   └── pokemonModels.js
 │   └── userModel.js
 ├── .env                                # Environment variables
-├── .gitignore
+├── .gitignore                          # For gitignore
 ├── package.json                        # Project metadata and dependencies
 ├── Index.js                            # Main server file
 └── README.md 
